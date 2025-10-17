@@ -1,0 +1,145 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+.nav__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 55px 140px;
+  padding-top: 20px;
+}
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.nav__heding .peddy {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.nav__menu ul {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.nav__menu ul li {
+  list-style: none;
+  font-size: 16px;
+  color: #5a5a5a;
+}
+
+.user__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  width: 56px;
+  border: 1px solid #cfe4e6;
+  border-radius: 50%;
+}
+
+.user__icon svg {
+  height: 24px;
+  width: 24px;
+}
+
+
+/* <!-- -------------- Banner Section-------------- --> */
+
+.banner__section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.banner__text__box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.banner__text__box h4{
+  font-size: 24px;
+font-weight: bold;
+color: #717171;
+}
+
+.banner__text__box h2 {
+  font-size: 72px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  margin-top: 25px;
+  text-align: center ;
+}
+.banner__button__box .banner__button{
+  padding: 16px 32px;
+  background: #0E7A81;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  border: 0px;
+  border-radius: 12px;
+}
+.banner__text__box p{
+  font-size: 16px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+
+@media (max-width: 768px) {
+  .nav__bar {
+    padding: 10px;
+  }
+  .nav__logo {
+    gap: 10px;
+  }
+  .nav__menu ul {
+    gap: 10px;
+  }
+  .user__icon {
+    height: 40px;
+    width: 40px;
+  }
+  .user__icon svg {
+    height: 15px;
+    width: 15px;
+}
+.nav__heding .peddy {
+    font-size: 20px;
+}
+.nav__img img{
+  width: 100%;
+  height: 100%;
+}
+.banner__img__box img{
+  height: auto;
+  width: 420px;
+}
+.banner__text__box h2 {
+    font-size: 35px;
+    padding: 0 15px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  .banner__text__box p{
+    padding: 0 15px;
+    font-size: 15px;
+  }
+  .banner__text__box h4 {
+    font-size: 18px;
+    margin-top: 30px;
+}
+.banner__button__box .banner__button {
+    padding: 10px 15px;
+    font-size: 15px;
+}
+
+}
