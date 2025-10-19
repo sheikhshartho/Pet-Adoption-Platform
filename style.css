@@ -27,6 +27,52 @@ body {
   font-size: 32px;
   font-weight: bold;
 }
+.nav__menu_tow {
+  position: fixed;
+  top: 50px;
+  left: 30px;
+  background-color: #0e79811f;
+  backdrop-filter: blur(3px);
+  padding: 20px;
+  border-radius: 20px;
+  width: 140px;
+  height: 150px;
+  opacity: 0;
+  transform: scale(0);
+  transition: 0.3s ease-in;
+}
+
+.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nav__menu_tow ul li {
+  list-style: none;
+  font-size: 16px;
+  font-weight: bold;
+  padding-bottom: 8px;
+  color: #5a5a5a;
+}
+
+.nav__menu_tow ul li:hover {
+  color: black;
+}
+
+.menu__close__btn {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+}
+.menu__close__btn svg {
+  width: 100%;
+  fill: #5a5a5a;
+}
+.menu__close__btn svg:active {
+  fill: red;
+}
 
 .nav__menu ul {
   display: flex;
@@ -89,6 +135,7 @@ body {
   border: 1px solid #0e7a81;
   color: #0e7a81;
   border-radius: 12px;
+  cursor: pointer;
   transition: 0.3s;
 }
 .banner__button:active {
@@ -226,6 +273,7 @@ body {
   border-radius: 8px;
   padding: 9px 18px;
   background: transparent;
+  cursor: pointer;
   transition: 0.3s;
 }
 .btn:active {
@@ -299,8 +347,8 @@ body {
     .nav__logo {
       gap: 10px;
     }
-    .nav__menu ul {
-      gap: 10px;
+    .nav__menu {
+      display: none;
     }
     .user__icon {
       height: 40px;
@@ -353,6 +401,19 @@ body {
     .bar__icon {
       display: block;
       width: 30px;
+    }
+    .left__side__card__box {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    .adopt__your__best__friend__section__box {
+      padding: 0 15px;
+      margin-top: 0px;
+    }
+
+    .adopt__secton .h3 {
+      text-align: center;
+      padding-bottom: 0;
+      margin-top: 20px;
     }
   }
 }

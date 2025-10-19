@@ -1,3 +1,16 @@
+const menuBar = document.querySelector(".bar__icon");
+const menuClose = document.querySelector(".menu__close__btn");
+const nevMenu = document.querySelector(".nav__menu_tow");
+
+menuBar.addEventListener("click", () => {
+  // nevMenu.style.display = 'block'
+  nevMenu.classList.add("show");
+});
+menuClose.addEventListener("click", () => {
+  // nevMenu.style.display = 'none'
+  nevMenu.classList.remove("show");
+});
+
 const loadCatagories = async () => {
   try {
     const res = await fetch(
@@ -27,6 +40,12 @@ const displayCatagoris = async (catagory) => {
     catagoryContainer.append(buttonContainer);
   });
 };
+
+const bannerButton = document.querySelector(".banner__button");
+const bannerSection = document.querySelector(".adopt__secton");
+bannerButton.addEventListener("click", () => {
+  bannerSection.scrollIntoView({ behavior: "smooth" });
+});
 
 const catagoryCard = async (cardId) => {
   try {
