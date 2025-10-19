@@ -6,6 +6,10 @@
   box-sizing: border-box;
   font-family: "Lato", sans-serif;
 }
+body {
+  max-width: 1320px;
+  margin: 0 auto;
+}
 
 .nav__bar {
   display: flex;
@@ -50,25 +54,24 @@
   width: 24px;
 }
 
-
 /* <!-- -------------- Banner Section-------------- --> */
 
-.banner__section{
+.banner__section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.banner__text__box{
+.banner__text__box {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.banner__text__box h4{
+.banner__text__box h4 {
   font-size: 24px;
-font-weight: bold;
-color: #717171;
+  font-weight: bold;
+  color: #717171;
 }
 
 .banner__text__box h2 {
@@ -76,70 +79,280 @@ color: #717171;
   font-weight: bold;
   margin-bottom: 24px;
   margin-top: 25px;
-  text-align: center ;
+  text-align: center;
 }
-.banner__button__box .banner__button{
+.banner__button__box .banner__button {
   padding: 16px 32px;
-  background: #0E7A81;
+  background: transparent;
   font-size: 20px;
   font-weight: bold;
-  color: #fff;
-  border: 0px;
+  border: 1px solid #0e7a81;
+  color: #0e7a81;
   border-radius: 12px;
+  transition: 0.3s;
 }
-.banner__text__box p{
+.banner__button:active {
+  background: #0e7a81;
+  color: #fff;
+}
+
+.banner__text__box p {
   font-size: 16px;
   margin-bottom: 32px;
   text-align: center;
+  padding-right: 65px;
+}
+.cantagory__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  border: 1.5px solid #dbebec;
+  border-radius: 16px;
+  cursor: pointer;
+}
+.cantagory__button img {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+.cantagory__button p {
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 24px;
 }
 
+.active {
+  border: 1.5px solid #0e7a81;
+  border-radius: 120px;
+  background: #e7f2f2;
+}
 
-@media (max-width: 768px) {
-  .nav__bar {
-    padding: 10px;
-  }
-  .nav__logo {
-    gap: 10px;
-  }
-  .nav__menu ul {
-    gap: 10px;
-  }
-  .user__icon {
-    height: 40px;
-    width: 40px;
-  }
-  .user__icon svg {
-    height: 15px;
-    width: 15px;
+.category__btn__container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding-bottom: 32px;
 }
-.nav__heding .peddy {
-    font-size: 20px;
+.bar__icon {
+  display: none;
 }
-.nav__img img{
-  width: 100%;
+
+/* <!----------Adopt Your Best Friend Section--------------> */
+
+.h3 {
+  font-size: 24px;
+  padding-top: 13.5px;
+  padding-bottom: 13.5px;
+}
+.adopt__your__best__friend__section__box {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card__box {
+  margin-top: 25px;
+  padding: 20px;
+  border: 1.5px solid #e7e7e7;
+  border-radius: 12px;
+}
+
+.card__box {
+  max-width: 312px;
+}
+.card__img__box {
+  max-width: 272;
+  max-height: 160;
+  border-radius: 8px;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: center;
+}
+.card__img__box img {
   height: 100%;
-}
-.banner__img__box img{
-  height: auto;
-  width: 420px;
-}
-.banner__text__box h2 {
-    font-size: 35px;
-    padding: 0 15px;
-    margin-bottom: 30px;
-    margin-top: 30px;
-  }
-  .banner__text__box p{
-    padding: 0 15px;
-    font-size: 15px;
-  }
-  .banner__text__box h4 {
-    font-size: 18px;
-    margin-top: 30px;
-}
-.banner__button__box .banner__button {
-    padding: 10px 15px;
-    font-size: 15px;
+  width: 100%;
+  border-radius: 8px;
+  transition: 0.5s ease;
 }
 
+.card__img__box img:hover {
+  transform: scale(1.2);
+}
+
+.card__contant__main__box {
+  margin-top: 24px;
+}
+.card__contant__box h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.card__contant__details__box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card__contant__details__box .card__contant__icon {
+  max-width: 20px;
+  max-height: 20px;
+  margin-bottom: 8px;
+}
+.card__contant__details__box .card__contant__icon svg {
+  width: 100%;
+  fill: #5a5a5a;
+}
+
+.card__contant__details__box .card__contant__text p {
+  font-size: 16px;
+  color: #5a5a5a;
+  padding-bottom: 10px;
+}
+.card__button_box {
+  border-top: 1px solid #e7e7e7;
+  margin-top: 16px;
+  padding-top: 16px;
+}
+.card__button_box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn {
+  border: 1px solid #dbebec;
+  border-radius: 8px;
+  padding: 9px 18px;
+  background: transparent;
+  transition: 0.3s;
+}
+.btn:active {
+  background-color: #0e7a81;
+  color: #fff;
+}
+
+.like__button svg {
+  width: 100%;
+}
+
+.like__button {
+  width: 60px;
+  height: 45px;
+  padding: 5px 15px;
+  fill: #5a5a5a;
+}
+.like__button:active {
+  background: #0e7a81;
+  fill: #fff;
+}
+
+.adopt__button {
+  font-size: 22px;
+  color: #0e7a81;
+}
+
+.details__button {
+  font-size: 22px;
+  color: #0e7a81;
+}
+
+.left__side__card__box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.left__side__card__box {
+  grid-column: span 2;
+}
+
+@media (max-width: 1380px) {
+  .category__btn__container {
+    padding: 20px;
+  }
+
+  @media (max-width: 1280px) {
+    .banner__text__box h2 {
+      font-size: 50px;
+    }
+    .banner__text__box h4 {
+      font-size: 20px;
+    }
+    .nav__bar {
+      padding-bottom: 15px;
+    }
+    .banner__button__box .banner__button {
+      padding: 10px 20px;
+      font-size: 15px;
+    }
+    .banner__img__box img {
+      width: 720px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav__bar {
+      padding: 10px;
+    }
+    .nav__logo {
+      gap: 10px;
+    }
+    .nav__menu ul {
+      gap: 10px;
+    }
+    .user__icon {
+      height: 40px;
+      width: 40px;
+    }
+    .user__icon svg {
+      height: 15px;
+      width: 15px;
+    }
+    .nav__heding .peddy {
+      font-size: 20px;
+    }
+    .nav__img img {
+      width: 100%;
+      height: 100%;
+    }
+    .banner__img__box img {
+      height: auto;
+      width: 420px;
+    }
+    .banner__text__box h2 {
+      font-size: 35px;
+      padding: 0 15px;
+      margin-bottom: 30px;
+      margin-top: 30px;
+    }
+    .banner__text__box p {
+      padding: 0 15px;
+      font-size: 15px;
+    }
+    .banner__text__box h4 {
+      font-size: 18px;
+      margin-top: 30px;
+    }
+    .banner__button__box .banner__button {
+      padding: 10px 15px;
+      font-size: 15px;
+    }
+    .cantagory__button {
+      padding: 10px;
+      gap: 5px;
+    }
+    .category__btn__container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding-bottom: 10px;
+      margin: 0 auto;
+    }
+    .bar__icon {
+      display: block;
+      width: 30px;
+    }
+  }
 }
