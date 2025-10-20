@@ -24,15 +24,16 @@ const loadCatagories = async () => {
 };
 
 const displayCatagoris = async (catagory) => {
+  // console.log(catagory);
   const catagoryContainer = document.querySelector(".category__btn__container");
   // console.log(catagoryContainer)
   catagory.forEach((item) => {
-    // console.log(item);
+    // console.log(item.category);
 
     const buttonContainer = document.createElement("div");
     // console.log(buttonContainer)
     buttonContainer.innerHTML = `
-      <div class="cantagory__button">
+      <div onclick="activeCatagory('${item.category}')" id="btn-${item.category}" class="cantagory__button catery__btn">
       <img src="${item.category_icon}" alt="">
       <p>${item.category}</p>
     </div>
@@ -40,6 +41,79 @@ const displayCatagoris = async (catagory) => {
     catagoryContainer.append(buttonContainer);
   });
 };
+
+const activeCatagoryRemove = () => {
+  const buttons = document.querySelectorAll(".catery__btn");
+  for (btn of buttons) {
+    btn.classList.remove("active");
+  }
+};
+
+const activeCatagory = async (categoryId) => {
+  try {
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/peddy/category/${categoryId}`
+    );
+    const data = await res.json();
+    // console.log(data.data);
+    // catagoryCard(data.data);
+    activeCatagoryRemove();
+    const activeBtn = document.getElementById(`btn-${categoryId}`);
+    console.log(activeBtn);
+    activeBtn.classList.add("active");
+    displayCard(data.data);
+  } catch (error) {}
+};
+
+const likeImage = async (likedId) => {
+  try {
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/peddy/pet/${likedId}`
+    );
+    const data = await res.json();
+    showLikeImage(data.petData);
+  } catch (error) {
+    console.error(error);
+  }
+};
+const showLikeImage = (liked) => {
+  const heading = document.querySelector(".hedding4");
+  heading.style.display = "none";
+  const btn = document.getElementById(`btn-${liked.petId}`);
+  btn.style.fill = "red";
+  const likedImg = document.querySelector(".right__side__like__box__section");
+  const like = document.createElement("div");
+  like.innerHTML = `
+          <div class="liked__image">
+            <img src="${liked.image}" alt="" />
+          </div>
+  `;
+  likedImg.append(like);
+};
+const losdDetails = async(detailId)=>{
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/peddy/category/${detailId}`
+    );
+  const data = await res.json()
+  console.log(data.petData);
+  // displayDetails(data.pets);
+}
+
+
+
+const displayDetails = () => { 
+  const details = document.querySelector(".displayDetails");
+  detailId.forEach((detail) => {
+    
+    const showDetails = document.createElement('div')
+    showDetails.innerHTML = ` 
+      
+    `;
+    details.append(showDetails)
+  })
+}
+
+ losdDetails()
 
 const bannerButton = document.querySelector(".banner__button");
 const bannerSection = document.querySelector(".adopt__secton");
@@ -60,9 +134,23 @@ const catagoryCard = async (cardId) => {
 };
 
 const displayCard = async (cards) => {
+  const cardBox = document.querySelector(".left__side__card__box");
+  cardBox.innerHTML = "";
+  if (cards.length == 0) {
+    cardBox.innerHTML = `
+        <div class="no__imformaniton__box">
+      <img src="images/error.webp" alt="" />
+      <h3>No Information Available</h3>
+      <p>
+        It is a long established fact that a reader will be distracted by the
+        readable content of a page when looking at its layout. The point of
+        using Lorem Ipsum is that it has a.
+      </p>
+    </div>
+    `;
+  }
   cards.forEach((card) => {
-    console.log(card);
-    const cardBox = document.querySelector(".left__side__card__box");
+    // console.log(card);
     const theCard = document.createElement("div");
     theCard.innerHTML = `
     <div class="card__box">
@@ -71,7 +159,7 @@ const displayCard = async (cards) => {
           </div>
           <div class="card__contant__main__box">
             <div class="card__contant__box">
-              <h4>Mister Tartosh</h4>
+              <h4>${card.pet_name}</h4>
               <div class="card__contant__details__box">
                 <div class="card__contant__icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M128 496L128 320C92.7 320 64 291.3 64 256C64 39.5 576 39.5 576 256C576 291.3 547.3 320 512 320L512 496C512 522.5 490.5 544 464 544L176 544C149.5 544 128 522.5 128 496z"/></svg>
@@ -110,9 +198,8 @@ const displayCard = async (cards) => {
               </div>
             </div>
             <div class="card__button_box">
-              <button class="like__button btn">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M235.5 102.8C256.3 68 300.5 54 338 71.6L345.2 75.4C380 96.3 394 140.5 376.4 178L376.4 178L362.3 208L472 208L479.4 208.4C515.7 212.1 544 242.8 544 280C544 293.2 540.4 305.4 534.2 316C540.3 326.6 543.9 338.8 544 352C544 370.3 537.1 386.8 526 399.5C527.3 404.8 528 410.3 528 416C528 441.1 515.1 463 495.8 475.9C493.9 511.4 466.4 540.1 431.4 543.6L424 544L319.9 544C301.9 544 284 540.6 267.3 534.1L260.2 531.1L259.5 530.8L252.9 527.6L252.2 527.3L240 520.8C227.7 514.3 216.7 506.1 207.1 496.7C203 523.6 179.8 544.1 151.8 544.1L119.8 544.1C88.9 544.1 63.8 519 63.8 488.1L64 264C64 233.1 89.1 208 120 208L152 208C162.8 208 172.9 211.1 181.5 216.5L231.6 110L232.2 108.8L234.9 103.8L235.5 102.9zM120 256C115.6 256 112 259.6 112 264L112 488C112 492.4 115.6 496 120 496L152 496C156.4 496 160 492.4 160 488L160 264C160 259.6 156.4 256 152 256L120 256zM317.6 115C302.8 108.1 285.3 113.4 276.9 127L274.7 131L217.9 251.9C214.4 259.4 212.4 267.4 211.9 275.6L211.8 279.8L211.8 392.7L212 400.6C214.4 433.3 233.4 462.7 262.7 478.3L274.2 484.4L280.5 487.5C292.9 493.1 306.3 496 319.9 496L424 496L426.4 495.9C438.5 494.7 448 484.4 448 472L447.8 469.4C447.7 468.5 447.6 467.7 447.4 466.8C444.7 454.7 451.7 442.6 463.4 438.8C473.1 435.7 480 426.6 480 416C480 411.7 478.9 407.8 476.9 404.2C470.6 393.1 474.1 379 484.9 372.2C491.7 367.9 496.1 360.4 496.1 352C496.1 344.9 493 338.5 487.9 334C482.7 329.4 479.7 322.9 479.7 316C479.7 309.1 482.7 302.6 487.9 298C493 293.5 496.1 287.1 496.1 280L496 277.6C494.9 266.3 485.9 257.3 474.6 256.2L472.2 256.1L324.7 256.1C316.5 256.1 308.9 251.9 304.5 245C300.1 238.1 299.5 229.3 303 221.9L333 157.6C340 142.6 334.4 124.9 320.5 116.6L317.6 115z"/></svg>
-              
+              <button onclick="likeImage(${card.petId})"  class="like__button btn" id = "btn-${card.petId}">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M305 151.1L320 171.8L335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1L576 231.7C576 343.9 436.1 474.2 363.1 529.9C350.7 539.3 335.5 544 320 544C304.5 544 289.2 539.4 276.9 529.9C203.9 474.2 64 343.9 64 231.7L64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1z"/></svg>
               </button>
               <button class="adopt__button btn">Adopt</button>
               <button class="details__button btn">details</button>
@@ -125,6 +212,7 @@ const displayCard = async (cards) => {
     cardBox.append(theCard);
   });
 };
+
 // 1-15', price: 1200, …}
 // breed
 // :
