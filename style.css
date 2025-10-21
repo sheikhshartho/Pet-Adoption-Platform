@@ -188,6 +188,37 @@ body {
 
 /* <!----------Adopt Your Best Friend Section--------------> */
 
+.loader__container{
+  width: 100%;
+  height: 430px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  grid-column: span 3;
+}
+
+.loder{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 9px solid transparent;
+  border-top-color: #5a5a5a;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  animation: spin .5s linear infinite;
+}
+
+@keyframes spin{
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+
 .h3 {
   font-size: 24px;
   padding-top: 13.5px;
@@ -487,6 +518,9 @@ body {
   .right__side__like__box__section {
     grid-template-columns: repeat(4, 1fr);
   }
+  .loader__container{
+    grid-column: span 4;
+  }
 }
 
 @media (max-width: 967px) {
@@ -604,4 +638,8 @@ body {
   .futoer__input{
     width: 100%;
   }
+  .loader__container{
+    grid-column: span 4;
+  }
+  
 }

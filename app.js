@@ -50,19 +50,28 @@ const activeCatagoryRemove = () => {
 };
 
 const activeCatagory = async (categoryId) => {
-  try {
-    const res = await fetch(
-      `https://openapi.programming-hero.com/api/peddy/category/${categoryId}`
-    );
-    const data = await res.json();
-    // console.log(data.data);
-    // catagoryCard(data.data);
-    activeCatagoryRemove();
-    const activeBtn = document.getElementById(`btn-${categoryId}`);
-    console.log(activeBtn);
-    activeBtn.classList.add("active");
-    displayCard(data.data);
-  } catch (error) {}
+  const loder = document.querySelector(".loader__container");
+  const cardBox = document.querySelector(".left__side__card__box");
+  loder.style.display = 'flex'
+  cardBox.style.display = "none";
+  setTimeout(async () => {
+    try {
+      const res = await fetch(
+        `https://openapi.programming-hero.com/api/peddy/category/${categoryId}`
+      );
+      const data = await res.json();
+      activeCatagoryRemove();
+      const activeBtn = document.getElementById(`btn-${categoryId}`);
+      console.log(activeBtn);
+      activeBtn.classList.add("active");
+      displayCard(data.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      loder.style.display = "none";
+      cardBox.style.display = "grid";
+    }
+  }, 500); 
 };
 
 const likeImage = async (likedId) => {
@@ -78,11 +87,21 @@ const likeImage = async (likedId) => {
 };
 const showLikeImage = (liked) => {
   const heading = document.querySelector(".hedding4");
-  heading.style.display = "none";
   const btn = document.getElementById(`btn-${liked.petId}`);
+  const hidelike = document.querySelector(`.newlike-${liked.petId}`);
+  if (btn.style.fill == "red" || heading.style.display == "block") {
+    btn.style.fill = "#5a5a5a";
+    hidelike.remove();
+    return;
+  }
+
+  heading.style.display = "block";
+  heading.style.display = "none";
   btn.style.fill = "red";
+
   const likedImg = document.querySelector(".right__side__like__box__section");
   const like = document.createElement("div");
+  like.classList.add(`newlike-${liked.petId}`);
   like.innerHTML = `
           <div class="liked__image">
             <img src="${liked.image}" alt="" />
@@ -90,30 +109,27 @@ const showLikeImage = (liked) => {
   `;
   likedImg.append(like);
 };
-const losdDetails = async(detailId)=>{
-    const res = await fetch(
-      `https://openapi.programming-hero.com/api/peddy/category/${detailId}`
-    );
-  const data = await res.json()
+const losdDetails = async (detailId) => {
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/peddy/category/${detailId}`
+  );
+  const data = await res.json();
   console.log(data.petData);
   // displayDetails(data.pets);
-}
+};
 
-
-
-const displayDetails = () => { 
+const displayDetails = () => {
   const details = document.querySelector(".displayDetails");
   detailId.forEach((detail) => {
-    
-    const showDetails = document.createElement('div')
+    const showDetails = document.createElement("div");
     showDetails.innerHTML = ` 
       
     `;
-    details.append(showDetails)
-  })
-}
+    details.append(showDetails);
+  });
+};
 
- losdDetails()
+losdDetails();
 
 const bannerButton = document.querySelector(".banner__button");
 const bannerSection = document.querySelector(".adopt__secton");
