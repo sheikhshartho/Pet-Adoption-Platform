@@ -52,7 +52,7 @@ const activeCatagoryRemove = () => {
 const activeCatagory = async (categoryId) => {
   const loder = document.querySelector(".loader__container");
   const cardBox = document.querySelector(".left__side__card__box");
-  loder.style.display = 'flex'
+  loder.style.display = "flex";
   cardBox.style.display = "none";
   setTimeout(async () => {
     try {
@@ -71,7 +71,7 @@ const activeCatagory = async (categoryId) => {
       loder.style.display = "none";
       cardBox.style.display = "grid";
     }
-  }, 500); 
+  }, 500);
 };
 
 const likeImage = async (likedId) => {
@@ -109,27 +109,6 @@ const showLikeImage = (liked) => {
   `;
   likedImg.append(like);
 };
-const losdDetails = async (detailId) => {
-  const res = await fetch(
-    `https://openapi.programming-hero.com/api/peddy/category/${detailId}`
-  );
-  const data = await res.json();
-  console.log(data.petData);
-  // displayDetails(data.pets);
-};
-
-const displayDetails = () => {
-  const details = document.querySelector(".displayDetails");
-  detailId.forEach((detail) => {
-    const showDetails = document.createElement("div");
-    showDetails.innerHTML = ` 
-      
-    `;
-    details.append(showDetails);
-  });
-};
-
-losdDetails();
 
 const bannerButton = document.querySelector(".banner__button");
 const bannerSection = document.querySelector(".adopt__secton");
@@ -218,7 +197,7 @@ const displayCard = async (cards) => {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M305 151.1L320 171.8L335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1L576 231.7C576 343.9 436.1 474.2 363.1 529.9C350.7 539.3 335.5 544 320 544C304.5 544 289.2 539.4 276.9 529.9C203.9 474.2 64 343.9 64 231.7L64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1z"/></svg>
               </button>
               <button class="adopt__button btn">Adopt</button>
-              <button class="details__button btn">details</button>
+              <button onclick="loadDetails(${card.petId})" class="details__button btn">details</button>
             </div>
           </div>
       </div> 
@@ -228,6 +207,66 @@ const displayCard = async (cards) => {
     cardBox.append(theCard);
   });
 };
+
+const loadDetails = async (detailId) => {
+  console.log(detailId);
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/peddy/pet/${detailId}`
+  );
+  const data = await res.json();
+  displayDetails(data.petData);
+};
+
+displayDetails = (detail) => {
+  const modal = document.querySelector(".modal");
+  const modalContent = document.getElementById("modal__content");
+  modalContent.innerHTML = `
+  <div class="modal__img">
+            <img src="${detail.image}" alt="" />
+          </div>
+          <div class="modal__details">
+            <h4>${detail.pet_name}</h4>
+            <div class="details">
+              <div class="icon"><img src="images/Frame (1).svg" alt="" /></div>
+              <p>Breed: ${detail.breed}</p>
+            </div>
+            <div class="details">
+              <div class="icon"><img src="images/Frame.svg" alt="" /></div>
+              <p>Gender: ${detail.gender}</p>
+            </div>
+            <div class="details">
+              <div class="icon"><img src="images/Frame (2).svg" alt="" /></div>
+              <p>Vaccinated status: ${detail.vaccinated_status}</p>
+            </div>
+            <div class="details">
+              <div class="icon"><img src="images/Frame (3).svg" alt="" /></div>
+              <p>Date of birth: ${detail.date_of_birth}</p>
+            </div>
+            <div class="details">
+              <div class="icon"><img src="images/Frame (4).svg" alt="" /></div>
+              <p>Price: ${detail.price}</p>
+            </div>
+          </div>
+          <div class="Details__Information">
+            <h4>Details Information</h4>
+            <p>
+              ${detail.pet_details}
+            </p>
+          </div>
+
+          <button onclick="detailModalRemove()" class="details__close__btn">Cancel</button>
+  `;
+  const modalContainer = document.querySelector(".modal__container");
+  modalContainer.classList.add("modal__detail__show");
+  modal.append(modalContent);
+};
+
+const detailModalRemove = () => {
+  const modalContainer = document.querySelector(".modal__container");
+  modalContainer.classList.remove("modal__detail__show");
+};
+
+// loadDetails()
 
 // 1-15', price: 1200, …}
 // breed

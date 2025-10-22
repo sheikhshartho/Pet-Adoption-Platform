@@ -188,7 +188,7 @@ body {
 
 /* <!----------Adopt Your Best Friend Section--------------> */
 
-.loader__container{
+.loader__container {
   width: 100%;
   height: 430px;
   display: none;
@@ -198,7 +198,7 @@ body {
   grid-column: span 3;
 }
 
-.loder{
+.loder {
   height: 100px;
   width: 100px;
   border-radius: 50%;
@@ -206,18 +206,14 @@ body {
   border-top-color: #5a5a5a;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  animation: spin .5s linear infinite;
+  animation: spin 0.5s linear infinite;
 }
 
-@keyframes spin{
-    100%{
-        transform: rotate(360deg);
-    }
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
-
-
-
 
 .h3 {
   font-size: 24px;
@@ -344,16 +340,12 @@ body {
   padding: 20px;
   width: 100%;
   margin-top: 25px;
-  border: 1px solid #e7e7e7;
+  border: 1px solid #bcdadb;
   border-radius: 12px;
-  min-height: 450px;
+  min-height: 45px;
   align-content: start;
+  background: #e7f2f2;
 }
-
-/* .right__side__like__box__section div{
-  height: 124px;
-
-} */
 
 .liked__image {
   overflow: hidden;
@@ -402,14 +394,118 @@ body {
   grid-column: span 4;
   display: none;
 }
+.modal__container {
+  z-index: 999;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.486);
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  /* transform: scale(0); */
+  visibility: hidden;
+  transition: 0.2s ease-in;
+}
+
+.modal__detail__show {
+  opacity: 1;
+  visibility: visible;
+  /* transform: scale(1); */
+}
+
+.modal {
+  width: 700px;
+  height: auto;
+  padding: 16px;
+  background: white;
+  border-radius: 12px;
+}
+
+.modal__img {
+  width: 100%;
+  height: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.modal__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.modal__details {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-bottom: 1px solid #e7e7e7;
+  padding-bottom: 16px;
+}
+.modal__details h4 {
+  font-weight: 700;
+  font-size: 24px;
+  grid-column: span 2;
+  margin-bottom: 16px;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+}
+
+.details p {
+  margin-left: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #5a5a5a;
+}
+
+.Details__Information {
+  margin-top: 16px;
+}
+.Details__Information h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.Details__Information p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #5a5a5a;
+}
+.details__close__btn {
+  width: 100%;
+  padding: 13px 0;
+  font-size: 18px;
+  color: #0e7a81;
+  background: #e7f2f2;
+  border: 1px solid #bcdadb;
+  border-radius: 12px;
+  margin-top: 16px;
+}
+
+.details__close__btn:active {
+  background-color: #0e7a81;
+  color: white;
+}
 
 .foter__section {
   background: black;
-  width: 100%;
+  /* width: 100%; */
   padding: 100px 140px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .f__icon {
@@ -518,7 +614,7 @@ body {
   .right__side__like__box__section {
     grid-template-columns: repeat(4, 1fr);
   }
-  .loader__container{
+  .loader__container {
     grid-column: span 4;
   }
 }
@@ -529,6 +625,9 @@ body {
   }
   .right__side__like__box__section {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .modal {
+    width: 620px;
   }
 }
 
@@ -631,15 +730,37 @@ body {
     flex-direction: column;
     padding: 30px 40px;
   }
-  .futer__menu{
+  .futer__menu {
     width: 100%;
     padding: 50px 0;
   }
-  .futoer__input{
+  .futoer__input {
     width: 100%;
   }
-  .loader__container{
+  .loader__container {
     grid-column: span 4;
   }
-  
+  .modal {
+    width: 330px;
+    height: auto;
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+  }
+  .details__close__btn {
+    padding: 10px 0;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+  .modal__details h4 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .modal__details {
+    margin-top: 20px;
+    padding-bottom: 12px;
+  }
+  .Details__Information {
+    margin-top: 12px;
+  }
 }
